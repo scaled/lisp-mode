@@ -1,0 +1,7 @@
+   name: lisp-mode
+ source: git:https://github.com/scaled/lisp-mode.git
+version: 1.0
+descrip: Provides support for editing lisp code.
+ weburl: https://github.com/scaled/lisp-mode
+license: New BSD
+ depend: git:https://github.com/scaled/textmate-grammar.git

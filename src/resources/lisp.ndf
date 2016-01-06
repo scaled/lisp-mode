@@ -1,0 +1,55 @@
+name: Lisp
+scopeName: source.lisp
+repository:
+patterns:
+ single:
+  pattern: ^\s*(;;.*)
+  caps: 1=comment.block.lisp
+ single:
+  pattern: (;.*)
+  caps: 1=comment.line.lisp
+ single:
+  pattern: \((defun)\s+((\w|\p{Punct})*)\s+\(([^)]*)\)
+  caps: 1=keyword.defun.lisp 2=entity.name.function.lisp 4=variable.defun.lisp
+ single:
+  pattern: ^\((def\w+)\s+(\w(\w|\p{Punct})*)
+  caps: 1=keyword.defoo.lisp 2=entity.name.function.lisp
+ single:
+  pattern: ^\((def\w+)\s+
+  caps: 1=keyword.defoo.lisp
+ single:
+  name: constant.character.lisp
+  pattern: (#|\?)(\w|[\\+-=<>'"&#])+
+  caps: 1=punctuation.definition.constant.lisp
+ single:
+  name: variable.other.global.lisp
+  pattern: (\*)(\S*)(\*)
+  caps: 1=punctuation.definition.variable.lisp 3=punctuation.definition.variable.lisp
+ single:
+  name: keyword.control.lisp
+  pattern: \b(case|do|let|loop|if|else|when)\b
+ single:
+  pattern: \((eq|neq|and|or|\+|-|\*|/|=|<=|>=|<|>)\s
+  caps: 1=keyword.operator.lisp
+ single:
+  name: constant.language.lisp
+  pattern: \b(null|nil|t|f|true|false)\b
+ single:
+  name: support.function.lisp
+  pattern: (?<![-\w])(?i:cons|car|cdr|cond|lambda|format|setq|setf|quote|eval|append|list|listp|memberp|t|load|progn)(?![-\w])
+ single:
+  name: constant.numeric.lisp
+  pattern: \b((0(x|X)[0-9a-fA-F]*)|(([0-9]+\.?[0-9]*)|(\.[0-9]+))((e|E)(\+|-)?[0-9]+)?)(L|l|UL|ul|u|U|F|f|ll|LL|ull|ULL)?\b
+ single:
+  pattern: (^|\(|\s)('\w[^\s\)]*)
+  caps: 2=constant.atom.lisp
+ multi:
+  name: string.quoted.double.lisp
+  begin: "
+  bcaps: 0=punctuation.definition.string.begin.lisp
+  end: "
+  ecaps: 0=punctuation.definition.string.end.lisp
+  patterns:
+   single:
+    name: constant.character.escape.lisp
+    pattern: \\.
