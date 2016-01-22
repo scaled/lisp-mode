@@ -42,6 +42,9 @@ class LispMode (env :Env) extends GrammarCodeMode(env) {
   override def grammars = LispConfig.grammars.get
   override def effacers = LispConfig.effacers
 
+  override def keymap = super.keymap.
+    bind("self-insert-command", "'"); // don't auto-pair single quote
+
   // override def createIndenter() = new XmlIndenter(buffer, config)
-  override val commenter = new Commenter()
+  override val commenter = new LispCommenter()
 }
