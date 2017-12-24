@@ -9,13 +9,14 @@ import scaled.code.Indenter
 import scaled.grammar._
 import scaled.code.{CodeConfig, Commenter}
 
-object LispConfig extends Config.Defs {
+@Plugin(tag="textmate-grammar")
+class LispGrammarPlugin extends GrammarPlugin {
   import EditorConfig._
   import CodeConfig._
-  import GrammarConfig._
 
-  // maps TextMate grammar scopes to Scaled style definitions
-  val effacers = List(
+  override def grammars = Map("source.lisp" -> "lisp.ndf")
+
+  override def effacers = List(
     effacer("comment.line", commentStyle),
     effacer("comment.block", docStyle),
     effacer("constant", constantStyle),
@@ -26,8 +27,6 @@ object LispConfig extends Config.Defs {
     effacer("entity.name.function", functionStyle),
     effacer("storage", variableStyle)
   )
-
-  val grammars = resource("lisp.ndf")(Grammar.parseNDFs)
 }
 
 @Major(name="lisp",
@@ -38,9 +37,7 @@ class LispMode (env :Env) extends GrammarCodeMode(env) {
 
   override def dispose () {} // nada for now
 
-  override def configDefs = LispConfig :: super.configDefs
-  override def grammars = LispConfig.grammars.get
-  override def effacers = LispConfig.effacers
+  override def langScope = "source.lisp"
 
   override def keymap = super.keymap.
     bind("self-insert-command", "'"); // don't auto-pair single quote
