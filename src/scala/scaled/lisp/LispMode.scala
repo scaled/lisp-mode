@@ -31,7 +31,7 @@ class LispGrammarPlugin extends GrammarPlugin {
 
 @Major(name="lisp",
        tags=Array("code", "project", "lisp"),
-       pats=Array(".*\\.lisp"),
+       pats=Array(".*\\.lisp", ".*\\.rkt"),
        desc="A major mode for editing lisp code.")
 class LispMode (env :Env) extends GrammarCodeMode(env) {
 
