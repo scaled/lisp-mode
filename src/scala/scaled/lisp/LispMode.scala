@@ -35,7 +35,7 @@ class LispGrammarPlugin extends GrammarPlugin {
        desc="A major mode for editing lisp code.")
 class LispMode (env :Env) extends GrammarCodeMode(env) {
 
-  override def dispose () {} // nada for now
+  override def dispose () :Unit = {} // nada for now
 
   override def langScope = "source.lisp"
 
